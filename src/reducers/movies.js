@@ -1,4 +1,4 @@
-import { FETCH_MOVIES, SET_LOADING, SET_QUERY } from '../actions/types';
+import { FETCH_MOVIES, FETCH_DETAIL_MOVIE, SET_LOADING, SET_QUERY } from '../actions/types';
 
 const initialState = {
     isLoading: false,
@@ -15,6 +15,11 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 items: action.payload.Search,
                 total: parseInt(action.payload.totalResults)
+            };
+        case FETCH_DETAIL_MOVIE:
+            return {
+                ...state,
+                item: action.payload
             };
         case SET_LOADING: 
             return {

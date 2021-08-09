@@ -8,55 +8,57 @@ import {
     Tr,
     Td,
 } from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
 
 function MovieDetail() {
+    const movie = useSelector(state => state.movies.item);
     return (
         <Flex mt={5}>
             <Box p={4} borderWidth="1px" borderRadius="lg" mr={2} flex={.5} height="100%">
-                <Image src="https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_SX300.jpg" />
+            {movie.Poster === 'N/A' ? <Image src="https://via.placeholder.com/500" /> : <Image src={movie.Poster} />}
             </Box>
             <Box p={4} borderWidth="1px" borderRadius="lg" flex={1}>
                 <Table variant="simple">
                     <Tbody>
                         <Tr>
                             <Td>Rating</Td>
-                            <Td>9.2</Td>
+                            <Td>{movie.imdbRating}</Td>
                         </Tr>
                         <Tr>
                             <Td>Released</Td>
-                            <Td>17 Apr 2011</Td>
+                            <Td>{movie.Released}</Td>
                         </Tr>
                         <Tr>
                             <Td>Runtime</Td>
-                            <Td>57 min</Td>
+                            <Td>{movie.Runtime}</Td>
                         </Tr>
                         <Tr>
                             <Td>Genre</Td>
-                            <Td>Action, Adventure, Drama</Td>
+                            <Td>{movie.Genre}</Td>
                         </Tr>
                         <Tr>
                             <Td>Director</Td>
-                            <Td>N/A</Td>
+                            <Td>{movie.Director}</Td>
                         </Tr>
                         <Tr>
                             <Td>Writer</Td>
-                            <Td>David Benioff, D.B. Weiss</Td>
+                            <Td>{movie.Writer}</Td>
                         </Tr>
                         <Tr>
                             <Td>Actors</Td>
-                            <Td>Emilia Clarke, Peter Dinklage, Kit Harington</Td>
+                            <Td>{movie.Actors}</Td>
                         </Tr>
                         <Tr>
                             <Td>Plot</Td>
-                            <Td>In the mythical continent of Westeros, several powerful families fight for control of the Seven Kingdoms. As conflict erupts in the kingdoms of men, an ancient enemy rises once again to threaten them all. Meanwhile, the last heirs of a recently usurped dynasty plot to take back their homeland from across the Narrow Sea.</Td>
+                            <Td>{movie.Plot}</Td>
                         </Tr>
                         <Tr>
                             <Td>Language</Td>
-                            <Td>English</Td>
+                            <Td>{movie.Language}</Td>
                         </Tr>
                         <Tr>
                             <Td>Country</Td>
-                            <Td>United States, United Kingdom</Td>
+                            <Td>{movie.Country}</Td>
                         </Tr>
                     </Tbody>
                 </Table>

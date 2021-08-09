@@ -12,7 +12,7 @@ function App() {
 		<Router>
 			<div>
 				<Switch>
-					<Route path="/detail">
+					<Route path="/:id">
 						<Detail />
 					</Route>
 					<Route path="/">
