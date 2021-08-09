@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import logo from '../assets/logo.svg'
 import { Box, Container, Flex, Spacer, Input, Button, Heading, Image } from '@chakra-ui/react'
 import { useBreakpointValue } from '@chakra-ui/react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_QUERY } from '../actions/types'
 import { fetchMovies } from '../actions'
 
 function Search() {
     const size = useBreakpointValue(['md', 'lg']);
-    const [query, setQuery] = useState('');
+    const query = useSelector(state => state.movies.query);
     const dispatch = useDispatch();
     const search = (e) => {
         e.preventDefault();
@@ -27,7 +28,7 @@ function Search() {
                         <Flex>
 
                             <Box width="87%">
-                                <Input placeholder="Find Movies" size={size} required={true} onChange={(e) => setQuery(e.target.value)} value={query} />
+                                <Input placeholder="Find Movies" size={size} required={true} onChange={(e) => dispatch({ type: SET_QUERY, payload: e.target.value})} value={query} />
                             </Box>
                             <Spacer />
                             <Box>

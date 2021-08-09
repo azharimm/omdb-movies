@@ -11,7 +11,7 @@ function Home() {
     return (
         <>
             <Search />
-            {!isLoading && movies && <Container maxW="container.lg">
+            {!isLoading && movies && <Container maxW="container.lg" mb={5}>
                 {movies.map(movie => (<MovieItem movie={movie} key={movie.imdbID} />))}
             </Container>}
             {isLoading && <MovieItemLoading />}

@@ -1,7 +1,8 @@
-import { FETCH_MOVIES, SET_LOADING } from '../actions/types';
+import { FETCH_MOVIES, SET_LOADING, SET_QUERY } from '../actions/types';
 
 const initialState = {
     isLoading: false,
+    query: '',
     items: [],
     total: 0,
     item: {}
@@ -19,6 +20,11 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: action.payload
+            }
+        case SET_QUERY:
+            return {
+                ...state,
+                query: action.payload
             }
         default:
             return state;
