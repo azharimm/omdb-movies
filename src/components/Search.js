@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+import logo from '../assets/logo.svg'
 import { Box, Container, Flex, Spacer, Input, Button, Heading, Image } from '@chakra-ui/react'
 import { useBreakpointValue } from '@chakra-ui/react'
-import logo from '../assets/logo.svg'
+import { useDispatch } from 'react-redux';
+import { fetchMovies } from '../actions'
 
 function Search() {
-    const size = useBreakpointValue(['md', 'lg'])
+    const size = useBreakpointValue(['md', 'lg']);
+    const [query, setQuery] = useState('');
+    const dispatch = useDispatch();
+    const search = (e) => {
+        e.preventDefault();
+        dispatch(fetchMovies(query));
+    }
     return (
         <Container maxW="container.lg">
             <Box mt={10} p={4} borderWidth="1px" borderRadius="lg">
@@ -15,17 +23,20 @@ function Search() {
                             <Heading>Find Movies</Heading>
                         </Flex>
                     </Box>
-                    <Flex>
-                        <Box width="87%">
-                            <Input placeholder="Find Movies" size={size} />
-                        </Box>
-                        <Spacer />
-                        <Box>
-                            <Button colorScheme="teal" mr="4" size={size}>
-                                Search
-                            </Button>
-                        </Box>
-                    </Flex>
+                    <form onSubmit={search}>
+                        <Flex>
+
+                            <Box width="87%">
+                                <Input placeholder="Find Movies" size={size} required={true} onChange={(e) => setQuery(e.target.value)} value={query} />
+                            </Box>
+                            <Spacer />
+                            <Box>
+                                <Button type="submit" colorScheme="teal" mr="4" size={size}>
+                                    Search
+                                </Button>
+                            </Box>
+                        </Flex>
+                    </form>
                 </Flex>
             </Box>
         </Container>
