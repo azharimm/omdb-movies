@@ -3,8 +3,8 @@ import { FETCH_MOVIES, FETCH_DETAIL_MOVIE, SET_LOADING, SET_QUERY } from '../act
 const initialState = {
     isLoading: false,
     query: '',
-    items: [],
-    total: 0,
+    items: null,
+    total: null,
     item: {}
 }
 

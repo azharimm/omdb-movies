@@ -6,10 +6,16 @@ export const fetchMovies = (query) => async dispatch => {
     try {
         dispatch({ type: SET_LOADING, payload: true })
         const response = await axios.get(`https://www.omdbapi.com/?apikey=${apiKey}&s=${query}&page=1`)
-        dispatch({ type: FETCH_MOVIES, payload: response.data })
-        dispatch({ type: SET_LOADING, payload: false })
+        if(response.data.Response === 'True') {
+            dispatch({ type: FETCH_MOVIES, payload: response.data })
+            dispatch({ type: SET_LOADING, payload: false })
+        }else {
+            dispatch({ type: FETCH_MOVIES, payload: { Search: [], totalResults: 0} })
+            dispatch({ type: SET_LOADING, payload: false })
+        }
     } catch (error) {
         console.log(error)
+        dispatch({ type: FETCH_MOVIES, payload: { Search: [], totalResults: 0}})
         dispatch({ type: SET_LOADING, payload: true })
     }
 }
