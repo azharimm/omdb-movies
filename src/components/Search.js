@@ -12,7 +12,7 @@ function Search() {
     const dispatch = useDispatch();
     const search = (e) => {
         e.preventDefault();
-        dispatch(fetchMovies(query));
+        dispatch(fetchMovies(query, 1, false));
     }
     return (
         <Container maxW="container.lg">

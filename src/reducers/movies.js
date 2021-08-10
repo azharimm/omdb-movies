@@ -1,27 +1,39 @@
-import { FETCH_MOVIES, FETCH_DETAIL_MOVIE, SET_LOADING, SET_QUERY } from '../actions/types';
+import { FETCH_MOVIES, FETCH_DETAIL_MOVIE, SET_LOADING, SET_QUERY, RESET_ITEMS } from '../actions/types';
 
 const initialState = {
     isLoading: false,
     query: '',
-    items: null,
+    items: [],
     total: null,
-    item: {}
+    item: {},
+    // page: 0,
 }
 
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_MOVIES:
+            let items = [];
+            if (action.payload.append) {
+                items = [...state.items, ...action.payload.Search]
+            } else {
+                items = action.payload.Search
+            }
             return {
                 ...state,
-                items: action.payload.Search,
-                total: parseInt(action.payload.totalResults)
+                items: items,
+                total: parseInt(action.payload.totalResults),
             };
         case FETCH_DETAIL_MOVIE:
             return {
                 ...state,
                 item: action.payload
             };
-        case SET_LOADING: 
+        case RESET_ITEMS:
+            return {
+                ...state,
+                items: []
+            }
+        case SET_LOADING:
             return {
                 ...state,
                 isLoading: action.payload

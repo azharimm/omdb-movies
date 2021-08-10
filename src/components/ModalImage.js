@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Image, useDisclosure } from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, Image } from '@chakra-ui/react'
 
 function ModalImage({ isOpen, onClose, posterUrl }) {
     return (

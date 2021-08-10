@@ -1,21 +1,22 @@
 import axios from 'axios';
-import { FETCH_MOVIES, SET_LOADING, FETCH_DETAIL_MOVIE } from './types'
+import { FETCH_MOVIES, SET_LOADING, FETCH_DETAIL_MOVIE, RESET_ITEMS } from './types'
 import { apiKey } from '../config';
 
-export const fetchMovies = (query) => async dispatch => {
+export const fetchMovies = (query, page, append) => async dispatch => {
     try {
         dispatch({ type: SET_LOADING, payload: true })
-        const response = await axios.get(`https://www.omdbapi.com/?apikey=${apiKey}&s=${query}&page=1`)
+        !append && dispatch({ type: RESET_ITEMS })
+        const response = await axios.get(`https://www.omdbapi.com/?apikey=${apiKey}&s=${query}&page=${page}`)
         if(response.data.Response === 'True') {
-            dispatch({ type: FETCH_MOVIES, payload: response.data })
+            dispatch({ type: FETCH_MOVIES, payload: {...response.data, query, append} })
             dispatch({ type: SET_LOADING, payload: false })
         }else {
-            dispatch({ type: FETCH_MOVIES, payload: { Search: [], totalResults: 0} })
+            dispatch({ type: FETCH_MOVIES, payload: { Search: [], totalResults: 0, query, append} })
             dispatch({ type: SET_LOADING, payload: false })
         }
     } catch (error) {
         console.log(error)
-        dispatch({ type: FETCH_MOVIES, payload: { Search: [], totalResults: 0}})
+        dispatch({ type: FETCH_MOVIES, payload: { Search: [], totalResults: 0, query, append}})
         dispatch({ type: SET_LOADING, payload: true })
     }
 }
