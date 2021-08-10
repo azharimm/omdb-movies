@@ -15,6 +15,7 @@ function Search() {
     const search = (e) => {
         e.preventDefault();
         dispatch(fetchMovies(query, 1, false));
+        setLists([]);
     };
     const change = (e) => {
         if(e.target.value.length === 0) setLists([])
