@@ -11,8 +11,7 @@ import MovieDetailLoading from '../components/MovieDetailLoading'
 function Detail() {
     const size = useBreakpointValue(['md', 'lg'])
     const params = useParams();
-    let isLoading = useSelector(state => state.movies.isLoading);
-    let movie = useSelector(state => state.movies.item);
+    let {isLoading, item } = useSelector(state => state.movies);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchDetailMovie(params.id))
@@ -27,10 +26,10 @@ function Detail() {
                                 Back
                             </Button>
                         </Link>
-                        <Heading size={size}>{movie.Title} ({movie.Year})</Heading>
+                        <Heading size={size}>{item.Title} ({item.Year})</Heading>
                     </Flex>
                 </Box>
-                <MovieDetail /></>)}
+                <MovieDetail movie={item} /></>)}
                 {isLoading && <MovieDetailLoading />}
             </Container>
         </>

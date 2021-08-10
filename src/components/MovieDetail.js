@@ -8,10 +8,8 @@ import {
     Tr,
     Td,
 } from '@chakra-ui/react'
-import { useSelector } from 'react-redux';
 
-function MovieDetail() {
-    const movie = useSelector(state => state.movies.item);
+function MovieDetail({ movie }) {
     return (
         <Flex mt={5}>
             <Box p={4} borderWidth="1px" borderRadius="lg" mr={2} flex={.5} height="100%">
