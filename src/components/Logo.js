@@ -7,7 +7,7 @@ function Logo() {
         <Box mb={5}>
             <Flex direction="column" justify="center" align="center">
                 <Image src={logo} width={250} mb={5} />
-                <Heading>Find Movies</Heading>
+                <Heading>OMDB Movies</Heading>
             </Flex>
         </Box>
     )
