@@ -1,4 +1,4 @@
-import { FETCH_MOVIES, FETCH_DETAIL_MOVIE, SET_LOADING, SET_QUERY, RESET_ITEMS } from '../actions/types';
+import { FETCH_MOVIES, FETCH_DETAIL_MOVIE, SET_LOADING, SET_QUERY, RESET_ITEMS, SET_ERROR } from '../actions/types';
 
 const initialState = {
     isLoading: false,
@@ -6,7 +6,7 @@ const initialState = {
     items: [],
     total: null,
     item: {},
-    // page: 0,
+    isError: false,
 }
 
 const postReducer = (state = initialState, action) => {
@@ -37,6 +37,11 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: action.payload
+            }
+        case SET_ERROR:
+            return {
+                ...state,
+                isError: action.payload
             }
         case SET_QUERY:
             return {

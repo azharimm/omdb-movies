@@ -3,14 +3,15 @@ import { Container, Center, useDisclosure } from '@chakra-ui/react';
 import useLoadmore from '../hooks/useLoadmore';
 import MovieItem from '../components/MovieItem';
 import Search from '../components/Search';
-import Empty from '../components/Empty';
-import MovieItemLoading from '../components/MovieItemLoading';
-import ModalImage from '../components/ModalImage';
+import Empty from '../components/display/Empty';
+import Error from '../components/display/Error';
+import MovieItemLoading from '../components/display/MovieItemLoading';
+import ModalImage from '../components/display/ModalImage';
 
 function Home() {
     const [posterUrl, setPosterUrl] = useState(null);
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [items, total, isLoading] = useLoadmore();
+    const [items, total, isLoading, isError] = useLoadmore();
 
     const onClickImage = (poster) => {
         setPosterUrl(poster);
@@ -25,7 +26,8 @@ function Home() {
                 {items.map(movie => (<MovieItem movie={movie} key={movie.imdbID} onClickImage={onClickImage} />))}
             </Container>}
             {!isLoading && total === 0 && items.length === 0 && <Empty />}
-            {isLoading && <MovieItemLoading />}
+            {isLoading && !isError && <MovieItemLoading />}
+            {isError && <Error />}
             {isOpen && <ModalImage isOpen={isOpen} onClose={onClose} posterUrl={posterUrl} />}
         </>
     )

@@ -4,7 +4,7 @@ import { useBreakpointValue } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import { apiKey } from '../config';
-import Logo from "./Logo";
+import Logo from "./display/Logo";
 import { SET_QUERY } from "../actions/types";
 import { fetchMovies } from "../actions";
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "../actions/index";
 
 function useLoadmore() {
-    const { items, total, query, isLoading } = useSelector(
+    const { items, total, query, isLoading, isError } = useSelector(
         (state) => state.movies
     );
     const [page, setPage] = useState(1);
@@ -39,7 +39,7 @@ function useLoadmore() {
         setPage(1);
     }, [query]);
 
-    return [items, total, isLoading];
+    return [items, total, isLoading, isError];
 }
 
 export default useLoadmore;

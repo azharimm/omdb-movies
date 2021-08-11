@@ -1,5 +1,5 @@
 import React from 'react';
-import empty from '../assets/empty.svg';
+import empty from '../../assets/empty.svg';
 import {Box, Flex, Image, Heading} from '@chakra-ui/react';
 
 function Empty() {

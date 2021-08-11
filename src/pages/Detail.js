@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useBreakpointValue } from '@chakra-ui/react'
 import { FaArrowLeft } from "react-icons/fa"
 import MovieDetail from '../components/MovieDetail'
-import MovieDetailLoading from '../components/MovieDetailLoading'
+import MovieDetailLoading from '../components/display/MovieDetailLoading'
 
 function Detail() {
     const size = useBreakpointValue(['md', 'lg'])
