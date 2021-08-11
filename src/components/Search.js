@@ -3,6 +3,7 @@ import { Box, Container, Flex, Spacer, Input, Button, UnorderedList, ListItem } 
 import { useBreakpointValue } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
+import { apiKey } from '../config';
 import Logo from "./Logo";
 import { SET_QUERY } from "../actions/types";
 import { fetchMovies } from "../actions";
@@ -20,7 +21,7 @@ function Search() {
     const change = (e) => {
         if(e.target.value.length === 0) setLists([])
         if (e.target.value.length >= 3) {
-            axios.get(`https://www.omdbapi.com/?apikey=faf7e5bb&s=${e.target.value}&page=1`)
+            axios.get(`https://www.omdbapi.com/?apikey=${apiKey}&s=${e.target.value}&page=1`)
                 .then(response => {
                     if (response.data.Response === 'True') {
                         setLists(response.data.Search);

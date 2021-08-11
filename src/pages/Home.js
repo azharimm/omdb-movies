@@ -26,7 +26,7 @@ function Home() {
             </Container>}
             {!isLoading && total === 0 && items.length === 0 && <Empty />}
             {isLoading && <MovieItemLoading />}
-            <ModalImage isOpen={isOpen} onClose={onClose} posterUrl={posterUrl} />
+            {isOpen && <ModalImage isOpen={isOpen} onClose={onClose} posterUrl={posterUrl} />}
         </>
     )
 }
